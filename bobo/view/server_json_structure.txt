@@ -1,0 +1,49 @@
+{
+    "player" : {
+        "playerX" : 0,
+        "playerY" : 0,
+        "playerSize" : 0,
+        "playerType" : 0,
+        "playerHealth" : 0,
+    },
+    "playerBullets" : [
+        {
+            "bulletX" : 0,
+            "bulletY" : 0,
+            "bulletSize" : 0,
+        },
+        {
+            "bulletX" : 0,
+            "bulletY" : 0,
+            "bulletSize" : 0,
+        }
+    ],
+    "enemies" : [
+        {
+            "enemyX" : 0,
+            "enemyY" : 0,
+            "enemySize" : 0,
+            "enemyType" : 0,
+            "enemyHealth" : 0,
+        },
+        {
+            "enemyX" : 0,
+            "enemyY" : 0,
+            "enemySize" : 0,
+            "enemyType" : 0,
+            "enemyHealth" : 0,
+        }
+    ]
+    "enemiesBullets" : [
+        {
+            "enemyBulletX" : 0,
+            "enemyBulletY" : 0,
+            "enemyBulletSize" : 0,
+        },
+        {
+            "enemyBulletX" : 0,
+            "enemyBulletY" : 0,
+            "enemyBulletSize" : 0,
+        }
+    ]
+}

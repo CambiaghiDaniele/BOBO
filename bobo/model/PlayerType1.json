@@ -1,0 +1,8 @@
+{
+    "barrel1" : {
+        "barrelOffsetX" : 0,
+        "barrelAngle" : 0,
+        "barrelWidth" : 1,
+        "barrelHeight" : 5
+    }
+}
