@@ -1,0 +1,8 @@
+{   
+    "movement" : [
+        "+",
+        "-" 
+    ],
+    "shooting" : true,
+    "playerType" : "type"
+}
