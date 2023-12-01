@@ -2,82 +2,107 @@ var canvas = document.getElementById('map');
 var ctx = canvas.getContext('2d');
 
 document.addEventListener("mousemove", getMousePosition);
+document.addEventListener("keydown", getKeyPressed());
+document.addEventListener("keyup", getKeyReleased());
+document.addEventListener("mousedown", getMousePressed());
+document.addEventListener("mouseup", getMouseReleased());
 
 const data = {
     "player" : {
-        "movementToX" : window.innerWidth / 2,
-        "movementToY" : window.innerHeight / 2,
         "size" : 25,
         "health" : 0,
         "type" : [
             {
                 "offsetX" : 0,
                 "angle" : 0,
-                "width" : 20,
-                "height" : 55
+                "width" : 25,
+                "height" : 60
             }
-        ]
+        ],
     },
     "playerBullets" : [
         {
-            "x" : 0,
-            "y" : 0,
+            "posX" : 0,
+            "posY" : 0,
             "size" : 0,
         },
         {
-            "x" : 0,
-            "y" : 0,
+            "posX" : 0,
+            "posY" : 0,
             "size" : 0,
         }
     ],
     "enemies" : [
         {
-            "x" : 0,
-            "y" : 0,
-            "size" : 0,
-            "type" : 0,
+            "posX" : 0,
+            "posY" : 0,
+            "size" : 25,
             "health" : 0,
+            "type" : [
+                {
+                    "offsetX" : 0,
+                    "angle" : 0,
+                    "width" : 25,
+                    "height" : 60
+                }
+            ],
         },
         {
-            "x" : 0,
-            "y" : 0,
+            "posX" : 0,
+            "posY" : 0,
             "size" : 0,
-            "type" : 0,
             "health" : 0,
+            "type" : [
+                {
+                    "offsetX" : 0,
+                    "angle" : 0,
+                    "width" : 1,
+                    "height" : 5
+                }
+            ],
         }
     ],
     "enemiesBullets" : [
         {
-            "x" : 0,
-            "y" : 0,
+            "posX" : 0,
+            "posY" : 0,
             "size" : 0,
         },
         {
-            "x" : 0,
-            "y" : 0,
+            "posX" : 0,
+            "posY" : 0,
             "size" : 0,
+        }
+    ],
+    "destructible" : [
+        {
+            "posX" : 0,
+            "posY" : 0,
+            "health" : 0,
+            "type" : {
+                "shape" : "shape",
+                "size" : 0,
+            }
+        },
+        {
+            "posX" : 0,
+            "posY" : 0,
+            "health" : 0,
+            "type" : {
+                "shape" : "shape",
+                "size" : 0,
+            }
         }
     ]
 };
 
 //player variables
-var barrelRotation;
-
-//player bullets variables
-//bullets structure: [bullet1:{bulletX, bulletY, bulletSize}, ...]
-var bullets = [];
-
-//enemy variables
-//enemies structure: [enemy1:{enemyX, enemyY, enemySize, enemyType, enemyHealth}, ...]
-var enemies = [];
-
-//enemy bullets variables
-//bullets structure: [enemyBullet1:{enemyBulletX, enemyBulletY, enemyBulletSize}, ...]
-var enemyBullets = [];
-
-//destructable variables
-//destructables structure: [desctructable1:{desctrutableX, desctrutableY, desctrutableType, desctrutableHealth}]
-var destructables = [];
+let barrelRotation;
+let wKeyPressed = false;
+let aKeyPressed = false;
+let sKeyPressed = false;
+let dKeyPressed = false;
+let shooting = false;
 
 //others
 var mousePosition = {mouseX : undefined, mouseY : undefined};
@@ -105,16 +130,54 @@ function drawPlayerBarrel() {
         ctx.restore(); 
     });
 }
-
 function getMouseAngle(){
     return Math.atan2(mousePosition.mouseY - canvas.height / 2, mousePosition.mouseX - canvas.width / 2);
 }
+
+//enemies functions
+
+//destructible functions
+/*
+function drawDestructible(){
+
+}
+*/
 
 //funzione che prende le coodinate del cursore nella finestra e le assegna all'oggetto mousePosition
 function getMousePosition(event){
     mousePosition.mouseX = event.clientX;
     mousePosition.mouseY = event.clientY;
 }
+
+function getKeyPressed(event){
+    if(event == "KeyW"){
+        wKeyPressed = true;
+    }else if(event == "KeyA"){
+        aKeyPressed = true;
+    }else if(event == "KeyS"){
+        sKeyPressed = true;
+    }else if(event == "KeyD"){
+        dKeyPressed = true;
+    }
+}
+function getKeyReleased(event){
+    if(event == "KeyW"){
+        wKeyPressed = false;
+    }else if(event == "KeyA"){
+        aKeyPressed = false;
+    }else if(event == "KeyS"){
+        sKeyPressed = false;
+    }else if(event == "KeyD"){
+        dKeyPressed = false;
+    }
+}
+function getMousePressed(){
+    shooting = true;
+}
+function getMouseReleased(){
+    shooting = false;
+}
+
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
